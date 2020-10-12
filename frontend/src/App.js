@@ -1,24 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import html2canvas from "html2canvas";
+import icon from "./icon.png";
+import "./App.css";
+
+const TargetComponent = () => {
+  return (
+    <div id="target-component" class="card red-main">
+      <div class="header red-secondary">
+        <div class="author-photo">
+          <img class="icon" src={icon} />
+        </div>
+        <div class="header-content">
+          <div class="author-name">machida4</div>
+          <div class="purchase-amount">￥50,000</div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="message">
+          吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。この書生というのは時々我々を捕かまえて煮て食うという話である。しかしその当時は何という考もなかったから別段恐しいとも思わなかった。ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。
+        </div>
+        <div></div>
+      </div>
+    </div>
+  );
+};
+
+const saveAsImage = (uri) => {
+  const downloadLink = document.createElement("a");
+
+  if (typeof downloadLink.download === "string") {
+    downloadLink.href = uri;
+
+    // ファイル名
+    downloadLink.download = "component.png";
+
+    // Firefox では body の中にダウンロードリンクがないといけないので一時的に追加
+    document.body.appendChild(downloadLink);
+
+    // ダウンロードリンクが設定された a タグをクリック
+    downloadLink.click();
+
+    // Firefox 対策で追加したリンクを削除しておく
+    document.body.removeChild(downloadLink);
+  } else {
+    window.open(uri);
+  }
+};
+
+function ExportButton() {
+  const onClickExport = () => {
+    const target = document.getElementById("target-component");
+
+    html2canvas(target).then((canvas) => {
+      const targetImgUri = canvas.toDataURL("img/png");
+      saveAsImage(targetImgUri);
+    });
+  };
+  return <button onClick={() => onClickExport()}>PNG出力</button>;
+}
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TargetComponent />
+      <ExportButton />
     </div>
   );
 }
