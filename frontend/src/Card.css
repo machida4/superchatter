@@ -1,0 +1,92 @@
+.card {
+  width: 335px;
+  height: auto;
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: 'Sawarabi Gothic', 'Roboto';
+}
+.header {
+  width: 100%;
+  height: 44px;
+  padding: 8px 16px;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+.author-photo {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.header-content {
+  box-sizing: border-box;
+  flex-direction: column;
+  display: flex;
+}
+.author-name {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.purchase-amount {
+  font-size: 15px;
+  color: #fff;
+}
+.card {
+  box-sizing: border-box;
+  width: 335px;
+  height: auto;
+}
+.message {
+  box-sizing: border-box;
+  padding: 8px 16px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.blue-main {
+  background: #1465c1;
+}
+.blue-secondary {
+  background: #1465c1;
+}
+.light-blue-main {
+  background: #00e5ff;
+}
+.light-blue-secondary {
+  background: #00b8d4;
+}
+.green-main {
+  background: #1de9b8;
+}
+.green-secondary {
+  background: #02bea6;
+}
+.yellow-main {
+  background: #fec827;
+}
+.yellow-secondary {
+  background: #fdb200;
+}
+.orange-main {
+  background: #f47c01;
+}
+.orange-secondary {
+  background: #e55202;
+}
+.magenta-main {
+  background: #e71e62;
+}
+.magenta-secondary {
+  background: #c2175b;
+}
+.red-main {
+  background: #e62017;
+}
+.red-secondary {
+  background: #d00000;
+}
