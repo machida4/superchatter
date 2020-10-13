@@ -3,10 +3,10 @@ import html2canvas from "html2canvas";
 import icon from "./icon.png";
 import "./App.css";
 
-const TargetComponent = () => {
+const CardComponent = () => {
   return (
-    <div id="target-component" class="card red-main">
-      <div class="header red-secondary">
+    <div id="card-component" class="card magenta-main">
+      <div class="header magenta-secondary">
         <div class="author-photo">
           <img class="icon" src={icon} />
         </div>
@@ -25,31 +25,31 @@ const TargetComponent = () => {
   );
 };
 
-const saveAsImage = (uri) => {
-  const downloadLink = document.createElement("a");
-
-  if (typeof downloadLink.download === "string") {
-    downloadLink.href = uri;
-
-    // ファイル名
-    downloadLink.download = "component.png";
-
-    // Firefox では body の中にダウンロードリンクがないといけないので一時的に追加
-    document.body.appendChild(downloadLink);
-
-    // ダウンロードリンクが設定された a タグをクリック
-    downloadLink.click();
-
-    // Firefox 対策で追加したリンクを削除しておく
-    document.body.removeChild(downloadLink);
-  } else {
-    window.open(uri);
-  }
-};
-
 function ExportButton() {
+  const saveAsImage = (uri) => {
+    const downloadLink = document.createElement("a");
+
+    if (typeof downloadLink.download === "string") {
+      downloadLink.href = uri;
+
+      // ファイル名
+      downloadLink.download = "component.png";
+
+      // Firefox では body の中にダウンロードリンクがないといけないので一時的に追加
+      document.body.appendChild(downloadLink);
+
+      // ダウンロードリンクが設定された a タグをクリック
+      downloadLink.click();
+
+      // Firefox 対策で追加したリンクを削除しておく
+      document.body.removeChild(downloadLink);
+    } else {
+      window.open(uri);
+    }
+  };
+
   const onClickExport = () => {
-    const target = document.getElementById("target-component");
+    const target = document.getElementById("card-component");
 
     html2canvas(target).then((canvas) => {
       const targetImgUri = canvas.toDataURL("img/png");
@@ -62,7 +62,7 @@ function ExportButton() {
 function App() {
   return (
     <div className="App">
-      <TargetComponent />
+      <CardComponent />
       <ExportButton />
     </div>
   );
