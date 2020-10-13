@@ -2,6 +2,7 @@ import React from "react";
 import html2canvas from "html2canvas";
 import icon from "./icon.png";
 import "./App.css";
+import firebase from "./Firebase";
 
 const CardComponent = () => {
   return (
