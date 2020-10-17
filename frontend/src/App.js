@@ -1,37 +1,11 @@
 import React from "react";
-import html2canvas from "html2canvas";
 import Card from "./Card";
+import ExportButton from "./ExportButton";
 import default_icon from "./default.jpg";
 import "./App.css";
 
 import firebase from "./Firebase";
 import SignInScreen from "./SignInScreen";
-
-function ExportButton() {
-  const saveAsImage = (uri) => {
-    const downloadLink = document.createElement("a");
-
-    if (typeof downloadLink.download === "string") {
-      downloadLink.href = uri;
-      downloadLink.download = "card.png";
-
-      downloadLink.click();
-    } else {
-      window.open(uri);
-    }
-  };
-
-  const onClickExport = () => {
-    const target = document.getElementById("card");
-
-    html2canvas(target, { useCORS: true }).then((canvas) => {
-      const targetImgUri = canvas.toDataURL("img/png");
-      saveAsImage(targetImgUri);
-    });
-  };
-
-  return <button onClick={() => onClickExport()}>PNG出力</button>;
-}
 
 class App extends React.Component {
   constructor(props) {
@@ -56,20 +30,28 @@ class App extends React.Component {
   }
 
   render() {
+    const defaultName = "sample";
+
     if (this.state.loading) {
       return <div>loading</div>;
     }
 
     return (
       <div className="App">
-        Username: {this.state.user && this.state.user.displayName}
+        <div className="userName">
+          Username: {this.state.user && this.state.user.displayName}
+        </div>
         {this.state.user ? (
-          <button onClick={this.logout}>Logout</button>
+          <div className="logOutButton">
+            <button onClick={this.logout}>Logout</button>
+          </div>
         ) : (
           <SignInScreen />
         )}
         <Card
-          displayName={this.state.user ? this.state.user.displayName : "sample"}
+          displayName={
+            this.state.user ? this.state.user.displayName : defaultName
+          }
           photoURL={this.state.user ? this.state.user.photoURL : default_icon}
         />
         <ExportButton />

@@ -11,7 +11,7 @@ const uiConfig = {
 
 const SignInScreen = (props) => {
   return (
-    <div>
+    <div className="signInScreen">
       <p>sign-in:</p>
       <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
     </div>
