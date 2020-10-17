@@ -1,7 +1,7 @@
 import React from "react";
 import html2canvas from "html2canvas";
 import Card from "./Card";
-import icon from "./icon.png";
+import default_icon from "./default.jpg";
 import "./App.css";
 
 import firebase from "./Firebase";
@@ -13,11 +13,8 @@ function ExportButton() {
 
     if (typeof downloadLink.download === "string") {
       downloadLink.href = uri;
-
-      // ファイル名
       downloadLink.download = "card.png";
 
-      // ダウンロードリンクが設定された a タグをクリック
       downloadLink.click();
     } else {
       window.open(uri);
@@ -32,6 +29,7 @@ function ExportButton() {
       saveAsImage(targetImgUri);
     });
   };
+
   return <button onClick={() => onClickExport()}>PNG出力</button>;
 }
 
@@ -72,7 +70,7 @@ class App extends React.Component {
         )}
         <Card
           displayName={this.state.user ? this.state.user.displayName : "sample"}
-          photoURL={this.state.user ? this.state.user.photoURL : icon}
+          photoURL={this.state.user ? this.state.user.photoURL : default_icon}
         />
         <ExportButton />
       </div>
