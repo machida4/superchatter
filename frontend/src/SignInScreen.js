@@ -4,7 +4,7 @@ import firebase from "./Firebase";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 
 const uiConfig = {
-  signInFlow: "popup",
+  signInFlow: "redirect",
   signInSuccessUrl: "/",
   signInOptions: [firebase.auth.TwitterAuthProvider.PROVIDER_ID],
 };

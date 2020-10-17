@@ -1,12 +1,11 @@
 import React from "react";
 import html2canvas from "html2canvas";
-import Card from "./Card"
+import Card from "./Card";
+import icon from "./icon.png";
 import "./App.css";
 
 import firebase from "./Firebase";
 import SignInScreen from "./SignInScreen";
-
-
 
 function ExportButton() {
   const saveAsImage = (uri) => {
@@ -16,7 +15,7 @@ function ExportButton() {
       downloadLink.href = uri;
 
       // ファイル名
-      downloadLink.download = "component.png";
+      downloadLink.download = "card.png";
 
       // ダウンロードリンクが設定された a タグをクリック
       downloadLink.click();
@@ -26,9 +25,9 @@ function ExportButton() {
   };
 
   const onClickExport = () => {
-    const target = document.getElementById("card-component");
+    const target = document.getElementById("card");
 
-    html2canvas(target).then((canvas) => {
+    html2canvas(target, { useCORS: true }).then((canvas) => {
       const targetImgUri = canvas.toDataURL("img/png");
       saveAsImage(targetImgUri);
     });
@@ -62,6 +61,7 @@ class App extends React.Component {
     if (this.state.loading) {
       return <div>loading</div>;
     }
+
     return (
       <div className="App">
         Username: {this.state.user && this.state.user.displayName}
@@ -70,7 +70,10 @@ class App extends React.Component {
         ) : (
           <SignInScreen />
         )}
-        <Card />
+        <Card
+          displayName={this.state.user ? this.state.user.displayName : "sample"}
+          photoURL={this.state.user ? this.state.user.photoURL : icon}
+        />
         <ExportButton />
       </div>
     );

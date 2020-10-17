@@ -1,17 +1,21 @@
 import React from "react";
-import icon from "./icon.png";
 import "./Card.css";
 
 // TODO: 入力できるようにする
-const Card = () => {
+const Card = (props) => {
+  const photoURL = props.photoURL;
+  const displayName = props.displayName;
+
+  console.log(photoURL);
+
   return (
-    <div id="card-component" className="card magenta-main">
+    <div id="card" className="card magenta-main">
       <div className="header magenta-secondary">
         <div className="author-photo">
-          <img className="icon" src={icon} />
+          <img className="icon" src={props.photoURL} />
         </div>
         <div className="header-content">
-          <div className="author-name">machida4</div>
+          <div className="author-name">{props.displayName}</div>
           <div className="purchase-amount">￥50,000</div>
         </div>
       </div>
